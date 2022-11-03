@@ -5,20 +5,20 @@ const {
 require('dotenv').config()
 const text = require('./const')
 
-
-
 const bot = new Telegraf(process.env.TOKEN)
-/* var curDate = new Date()
+
 var options = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     weekday: 'long',
-  };
+};
 
-var graphArray =[] */
+const dateZon = "uk"
 
-/* graphArray[2]= 
+var graphArray =[]
+
+graphArray[2]= 
 '\n' + '00:00 - 02:00' + 
 '\n' + '06:00 - 08:00' + 
 '\n' + '12:00 - 14:00' + 
@@ -34,14 +34,7 @@ graphArray[0]=
 '\n' + '04:00 - 06:00' + 
 '\n' + '10:00 - 12:00' + 
 '\n' + '16:00 - 18:00' + 
-'\n' + '22:00 - 24:00' */
-
-/* var indxGraph1 = (4 + curDate.getDate()) % 3
-var indxGraph2 = (3 + curDate.getDate()) % 3
-var indxGraph3 = (5 + curDate.getDate()) % 3 */
-
-
-// bot.start(ctx => console.log(ctx.message))
+'\n' + '22:00 - 24:00'
 
 bot.start(ctx => {
     ctx.reply('Вкажіть вашу чергу відключення: ', 
@@ -55,88 +48,32 @@ bot.help((ctx) => ctx.reply(text.commands))
 }
 ) */
 
-
 bot.hears('Черга 1', ctx => {
+   
     var curDate = new Date()
-var options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
-
-var graphArray =[]
-
-graphArray[2]= 
-'\n' + '00:00 - 02:00' + 
-'\n' + '06:00 - 08:00' + 
-'\n' + '12:00 - 14:00' + 
-'\n' + '18:00 - 20:00'
-
-graphArray[1]=
-'\n' + '02:00 - 04:00' + 
-'\n' + '08:00 - 10:00' + 
-'\n' + '14:00 - 16:00' + 
-'\n' + '20:00 - 22:00'
-
-graphArray[0]=
-'\n' + '04:00 - 06:00' + 
-'\n' + '10:00 - 12:00' + 
-'\n' + '16:00 - 18:00' + 
-'\n' + '22:00 - 24:00'
-
-var indxGraph1 = (4 + curDate.getDate()) % 3
-var indxGraph2 = (3 + curDate.getDate()) % 3
-var indxGraph3 = (5 + curDate.getDate()) % 3
+    var indxGraph1 = (4 + curDate.getDate()) % 3
+    var indxGraph2 = (3 + curDate.getDate()) % 3
+    var indxGraph3 = (5 + curDate.getDate()) % 3
  
-        ctx.reply('1-ша черга. Сьогодні - '+ 
-        '\n' + curDate.toLocaleString("ua",options) + 
-        '\n' + 'відключення електроенергії буде:' +
+        ctx.replyWithHTML('1-ша черга. Сьогодні - '+ 
+        '\n<b>' + curDate.toLocaleString(dateZon,options) + 
+        '</b>\n' + 'відключення електроенергії буде:' +
         '\n' +
         graphArray[indxGraph1])
         console.log(curDate)
         console.log(ctx.message)
-
-
-
 })
 
 bot.hears('Черга 2', ctx => {
+    
     var curDate = new Date()
-var options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
+    var indxGraph1 = (4 + curDate.getDate()) % 3
+    var indxGraph2 = (3 + curDate.getDate()) % 3
+    var indxGraph3 = (5 + curDate.getDate()) % 3
 
-var graphArray =[]
-
-graphArray[2]= 
-'\n' + '00:00 - 02:00' + 
-'\n' + '06:00 - 08:00' + 
-'\n' + '12:00 - 14:00' + 
-'\n' + '18:00 - 20:00'
-
-graphArray[1]=
-'\n' + '02:00 - 04:00' + 
-'\n' + '08:00 - 10:00' + 
-'\n' + '14:00 - 16:00' + 
-'\n' + '20:00 - 22:00'
-
-graphArray[0]=
-'\n' + '04:00 - 06:00' + 
-'\n' + '10:00 - 12:00' + 
-'\n' + '16:00 - 18:00' + 
-'\n' + '22:00 - 24:00'
-
-var indxGraph1 = (4 + curDate.getDate()) % 3
-var indxGraph2 = (3 + curDate.getDate()) % 3
-var indxGraph3 = (5 + curDate.getDate()) % 3
-
-    ctx.reply('2-га черга. Сьогодні - '+ 
-    '\n' + curDate.toLocaleString("ua",options) + 
-    '\n' + 'відключення електроенергії буде:' +
+    ctx.replyWithHTML('2-га черга. Сьогодні - '+ 
+    '\n<b>' + curDate.toLocaleString(dateZon,options) + 
+    '</b>\n' + 'відключення електроенергії буде:' +
     '\n' +
     graphArray[indxGraph2])
     console.log(curDate)
@@ -144,41 +81,15 @@ var indxGraph3 = (5 + curDate.getDate()) % 3
 })
 
 bot.hears('Черга 3', ctx => {
+    
     var curDate = new Date()
-var options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
+    var indxGraph1 = (4 + curDate.getDate()) % 3
+    var indxGraph2 = (3 + curDate.getDate()) % 3
+    var indxGraph3 = (5 + curDate.getDate()) % 3
 
-var graphArray =[]
-
-graphArray[2]= 
-'\n' + '00:00 - 02:00' + 
-'\n' + '06:00 - 08:00' + 
-'\n' + '12:00 - 14:00' + 
-'\n' + '18:00 - 20:00'
-
-graphArray[1]=
-'\n' + '02:00 - 04:00' + 
-'\n' + '08:00 - 10:00' + 
-'\n' + '14:00 - 16:00' + 
-'\n' + '20:00 - 22:00'
-
-graphArray[0]=
-'\n' + '04:00 - 06:00' + 
-'\n' + '10:00 - 12:00' + 
-'\n' + '16:00 - 18:00' + 
-'\n' + '22:00 - 24:00'
-
-var indxGraph1 = (4 + curDate.getDate()) % 3
-var indxGraph2 = (3 + curDate.getDate()) % 3
-var indxGraph3 = (5 + curDate.getDate()) % 3
-
-    ctx.reply('3-тя черга. Сьогодні - '+ 
-    '\n' + curDate.toLocaleString("ua",options) + 
-    '\n' + 'відключення електроенергії буде:' +
+    ctx.replyWithHTML('3-тя черга. Сьогодні - '+ 
+    '\n<b>' + curDate.toLocaleString(dateZon,options) + 
+    '</b>\n' + 'відключення електроенергії буде:' +
     '\n' +
     graphArray[indxGraph3])
     console.log(curDate)
@@ -187,85 +98,31 @@ var indxGraph3 = (5 + curDate.getDate()) % 3
 
 
 bot.hears('1', ctx => {
+    
     var curDate = new Date()
-var options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
+    var indxGraph1 = (4 + curDate.getDate()) % 3
+    var indxGraph2 = (3 + curDate.getDate()) % 3
+    var indxGraph3 = (5 + curDate.getDate()) % 3
 
-var graphArray =[]
-
-graphArray[2]= 
-'\n' + '00:00 - 02:00' + 
-'\n' + '06:00 - 08:00' + 
-'\n' + '12:00 - 14:00' + 
-'\n' + '18:00 - 20:00'
-
-graphArray[1]=
-'\n' + '02:00 - 04:00' + 
-'\n' + '08:00 - 10:00' + 
-'\n' + '14:00 - 16:00' + 
-'\n' + '20:00 - 22:00'
-
-graphArray[0]=
-'\n' + '04:00 - 06:00' + 
-'\n' + '10:00 - 12:00' + 
-'\n' + '16:00 - 18:00' + 
-'\n' + '22:00 - 24:00'
-
-var indxGraph1 = (4 + curDate.getDate()) % 3
-var indxGraph2 = (3 + curDate.getDate()) % 3
-var indxGraph3 = (5 + curDate.getDate()) % 3
-
-        ctx.reply('1-ша черга. Сьогодні - '+ 
-        '\n' + curDate.toLocaleString("ua",options) + 
-        '\n' + 'відключення електроенергії буде:' +
+        ctx.replyWithHTML('1-ша черга. Сьогодні - '+ 
+        '\n<b>' + curDate.toLocaleString(dateZon,options) + 
+        '</b>\n' + 'відключення електроенергії буде:' +
         '\n' +
         graphArray[indxGraph1])
         console.log(curDate)
         console.log(ctx.message)
-
-
 })
 
 bot.hears('2', ctx => {
+    
     var curDate = new Date()
-var options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
+    var indxGraph1 = (4 + curDate.getDate()) % 3
+    var indxGraph2 = (3 + curDate.getDate()) % 3
+    var indxGraph3 = (5 + curDate.getDate()) % 3
 
-var graphArray =[]
-
-graphArray[2]= 
-'\n' + '00:00 - 02:00' + 
-'\n' + '06:00 - 08:00' + 
-'\n' + '12:00 - 14:00' + 
-'\n' + '18:00 - 20:00'
-
-graphArray[1]=
-'\n' + '02:00 - 04:00' + 
-'\n' + '08:00 - 10:00' + 
-'\n' + '14:00 - 16:00' + 
-'\n' + '20:00 - 22:00'
-
-graphArray[0]=
-'\n' + '04:00 - 06:00' + 
-'\n' + '10:00 - 12:00' + 
-'\n' + '16:00 - 18:00' + 
-'\n' + '22:00 - 24:00'
-
-var indxGraph1 = (4 + curDate.getDate()) % 3
-var indxGraph2 = (3 + curDate.getDate()) % 3
-var indxGraph3 = (5 + curDate.getDate()) % 3
-
-    ctx.reply('2-га черга. Сьогодні - '+ 
-    '\n' + curDate.toLocaleString("ua",options) + 
-    '\n' + 'відключення електроенергії буде:' +
+    ctx.replyWithHTML('2-га черга. Сьогодні - '+ 
+    '\n<b>' + curDate.toLocaleString(dateZon,options) + 
+    '</b>\n' + 'відключення електроенергії буде:' +
     '\n' +
     graphArray[indxGraph2])
     console.log(curDate)
@@ -273,41 +130,15 @@ var indxGraph3 = (5 + curDate.getDate()) % 3
 })
 
 bot.hears('3', ctx => {
-    var curDate = new Date()
-var options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
-
-var graphArray =[]
-
-graphArray[2]= 
-'\n' + '00:00 - 02:00' + 
-'\n' + '06:00 - 08:00' + 
-'\n' + '12:00 - 14:00' + 
-'\n' + '18:00 - 20:00'
-
-graphArray[1]=
-'\n' + '02:00 - 04:00' + 
-'\n' + '08:00 - 10:00' + 
-'\n' + '14:00 - 16:00' + 
-'\n' + '20:00 - 22:00'
-
-graphArray[0]=
-'\n' + '04:00 - 06:00' + 
-'\n' + '10:00 - 12:00' + 
-'\n' + '16:00 - 18:00' + 
-'\n' + '22:00 - 24:00'
-
-var indxGraph1 = (4 + curDate.getDate()) % 3
-var indxGraph2 = (3 + curDate.getDate()) % 3
-var indxGraph3 = (5 + curDate.getDate()) % 3 
     
-    ctx.reply('3-тя черга. Сьогодні - '+ 
-    '\n' + curDate.toLocaleString("ua",options) + 
-    '\n' + 'відключення електроенергії буде:' +
+    var curDate = new Date()
+    var indxGraph1 = (4 + curDate.getDate()) % 3
+    var indxGraph2 = (3 + curDate.getDate()) % 3
+    var indxGraph3 = (5 + curDate.getDate()) % 3
+    
+    ctx.replyWithHTML('3-тя черга. Сьогодні - '+ 
+    '\n<b>' + curDate.toLocaleString(dateZon,options) + 
+    '</b>\n' + 'відключення електроенергії буде:' +
     '\n' +
     graphArray[indxGraph3])
     console.log(curDate)
