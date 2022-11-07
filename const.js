@@ -1,6 +1,7 @@
 // Команды бота
 const commands = `
 /start - Почати роботу
-/help - Допомога`
+/help - Допомога
+/myline - Яка моя черга?`
 
 module.exports.commands = commands
