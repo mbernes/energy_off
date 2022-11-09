@@ -4,6 +4,35 @@ const {
 } = require('telegraf')
 require('dotenv').config()
 const text = require('./const')
+//const fs = require('fs')
+
+//function saveToFile(newMessage) {
+//  fs.appendFile('users.txt', newMessage, function(error){
+//    if(error) throw error; // если возникла ошибка
+                 
+/*     console.log("Запись файла завершена. Содержимое файла:");
+    let data = fs.readFileSync("hello.txt", "utf8");
+    console.log(data);  // выводим считанные данные */
+//})
+//}
+
+function makeStringMessage(ctxMsg) {
+    const newMsg = ctxMsg.message.message_id +', ' +
+    ctxMsg.message.from.id +', ' +
+    ctxMsg.message.from.is_bot +', ' +
+    ctxMsg.message.from.first_name +', ' +
+    ctxMsg.message.from.last_name +', ' +
+    ctxMsg.message.from.language_code +', ' +
+    ctxMsg.message.chat.id +', ' +
+    ctxMsg.message.chat.first_name +', ' +
+    ctxMsg.message.chat.last_name +', ' +
+    ctxMsg.message.chat.type +', ' +
+    ctxMsg.message.date +', ' +
+    ctxMsg.message.text + '\n'
+
+    return newMsg
+
+}
 
 
 
@@ -50,6 +79,8 @@ var bs1s = '',
     bs3e = '',
     bs4e = ''
 
+var logDate = new Date()
+var logDateString = logDate.toLocaleString(dateZon,options) + '\n'+logDate.toLocaleTimeString() + '\n'     
 var lineDate = 0
 
 var graphArray =[]
@@ -79,17 +110,24 @@ graphArray[0]=
 bot.start(ctx => {
     ctx.reply('Вкажіть вашу чергу відключення: ', 
     Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3']]).resize())
+    bot.telegram.sendMessage(331530824, logDateString + makeStringMessage(ctx))
 })
 
-bot.help((ctx) => ctx.reply(text.commands))
+bot.help((ctx) => {
+    ctx.reply(text.commands)
+    bot.telegram.sendMessage(331530824,logDateString + makeStringMessage(ctx))
+    
 
 /* bot.command('today', (ctx) => {
     ctx.replyWithHTML('<b>Дата</b>', Markup.keyboard(['Почати']).resize())
 }
 ) */
 
+} )
+
 bot.command('myline', (ctx) => {
     ctx.replyWithHTML('Перелік адрес для визначення черги відключення'+'\n'+'https://bit.ly/3heXJCr')
+    bot.telegram.sendMessage(331530824, logDateString + makeStringMessage(ctx))
 }
 )
 
@@ -134,6 +172,7 @@ bot.hears('Завтра (черга 1)', ctx => {
         Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3']]).resize())
         console.log(curDate)
         console.log(ctx.message)
+        bot.telegram.sendMessage(331530824,curDate.toLocaleString(dateZon,options)+'\n'+curDate.toLocaleTimeString()+'\n'+makeStringMessage(ctx))
 })
 
 bot.hears('Завтра (черга 2)', ctx => {
@@ -152,6 +191,7 @@ bot.hears('Завтра (черга 2)', ctx => {
         Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3']]).resize())
         console.log(curDate)
         console.log(ctx.message)
+        bot.telegram.sendMessage(331530824,curDate.toLocaleString(dateZon,options)+'\n'+curDate.toLocaleTimeString()+'\n'+makeStringMessage(ctx))
 })
 
 bot.hears('Завтра (черга 3)', ctx => {
@@ -170,6 +210,7 @@ bot.hears('Завтра (черга 3)', ctx => {
         Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3']]).resize())
         console.log(curDate)
         console.log(ctx.message)
+        bot.telegram.sendMessage(331530824,curDate.toLocaleString(dateZon,options)+'\n'+curDate.toLocaleTimeString()+'\n'+makeStringMessage(ctx))
 })
 
 bot.hears('Черга 1', ctx => {
@@ -187,6 +228,10 @@ bot.hears('Черга 1', ctx => {
         Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3'], ['Завтра (черга 1)', 'Дата (черга 1)']]).resize())
         console.log(curDate)
         console.log(ctx.message)
+
+        //saveToFile(curDate + ', ' + makeStringMessage(ctx))
+        console.log(curDate + ', ' + makeStringMessage(ctx))
+        bot.telegram.sendMessage(331530824,curDate.toLocaleString(dateZon,options)+'\n'+curDate.toLocaleTimeString()+'\n'+makeStringMessage(ctx))
 })
 
 bot.hears('Черга 2', ctx => {
@@ -204,6 +249,7 @@ bot.hears('Черга 2', ctx => {
     Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3'], ['Завтра (черга 2)', 'Дата (черга 2)']]).resize())
     console.log(curDate)
     console.log(ctx.message)
+    bot.telegram.sendMessage(331530824,curDate.toLocaleString(dateZon,options)+'\n'+curDate.toLocaleTimeString()+'\n'+makeStringMessage(ctx))
 })
 
 bot.hears('Черга 3', ctx => {
@@ -224,6 +270,7 @@ bot.hears('Черга 3', ctx => {
     console.log(curDate.toLocaleString(dateZon,options))
     console.log(curDate)
     console.log(curDate.toLocaleTimeString())
+    bot.telegram.sendMessage(331530824,curDate.toLocaleString(dateZon,options)+'\n'+curDate.toLocaleTimeString()+'\n'+makeStringMessage(ctx))
     
 
 })
@@ -245,6 +292,7 @@ bot.hears('1', ctx => {
         Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3'], ['Завтра (черга 1)', 'Дата (черга 1)']]).resize())
         console.log(curDate)
         console.log(ctx.message)
+        bot.telegram.sendMessage(331530824,logDateString + makeStringMessage(ctx))
     }
 })
 
@@ -263,6 +311,7 @@ bot.hears('2', ctx => {
     Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3'], ['Завтра (черга 2)', 'Дата (черга 2)']]).resize())
     console.log(curDate)
     console.log(ctx.message)
+    bot.telegram.sendMessage(331530824,logDateString + makeStringMessage(ctx))
     } 
 })
 
@@ -281,6 +330,7 @@ bot.hears('3', ctx => {
     Markup.keyboard([['Черга 1', 'Черга 2', 'Черга 3'], ['Завтра (черга 3)', 'Дата (черга 3)']]).resize())
     console.log(curDate)
     console.log(ctx.message)
+    bot.telegram.sendMessage(331530824,logDateString + makeStringMessage(ctx))
    } 
 })
 
@@ -321,6 +371,7 @@ if (ctx.message.text != 'Листопад 2022') {
         console.log(curDate)
         console.log(ctx.message)
         console.log(plusDays) 
+        bot.telegram.sendMessage(331530824,logDateString + makeStringMessage(ctx))
     }
 
 }
@@ -328,14 +379,18 @@ if (ctx.message.text != 'Листопад 2022') {
 
 bot.on('voice', ctx => {
     ctx.reply('Глуха баба, девять - десять?')
+    bot.telegram.sendMessage(331530824, logDateString + makeStringMessage(ctx))
 })
 
 bot.on('sticker', ctx => {
     ctx.reply('Це рівень не нижче Пікасо')
+    bot.telegram.sendMessage(331530824,logDateString + makeStringMessage(ctx))
 })
 
 bot.on('edited_message', ctx => {
     ctx.reply('Ви змінили повідомлення')
+    bot.telegram.sendMessage(331530824,logDateString + makeStringMessage(ctx))
+    //bot.telegram.sendMessage()
 })
 
 bot.launch()
